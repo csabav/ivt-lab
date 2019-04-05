@@ -92,7 +92,7 @@ public class GT4500 implements SpaceShip {
 
     return firingSuccess;
 
-    // adding comment here
+    // another test comment, this is a bit different
   }
 
 }
