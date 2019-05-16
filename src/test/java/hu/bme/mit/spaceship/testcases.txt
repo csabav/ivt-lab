@@ -1,0 +1,7 @@
+single firing esetén a másodlagos torpedo storet nem hívtuk-e véletlenül
+a második single fire hívás esetén tényleg a másodlagos torpedoval tüzeltünk-e
+üres elsődleges torpedo store esetén tényleg a másodlagos torpedoval tüzeltünk-e
+üres másodlagos torpedo store és két single fire hívás esetén tüzelünk-e kettőt az elsődleges torpedoval
+üres másodlagos torpedo store és all fire hívás esetén tüzelünk-e kettőt az elsővel
+
+üres elsődleges és másodlagos torpedok esetén tüzelünk e bármelyikkel

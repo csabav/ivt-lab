@@ -16,3 +16,6 @@ target/
 
 # IntelliJ folder
 .idea/
+
+# VS Code foler
+.vscode/
