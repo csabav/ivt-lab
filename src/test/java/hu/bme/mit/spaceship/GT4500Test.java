@@ -88,7 +88,7 @@ public class GT4500Test {
     // Assert
     verify(mockTorpedoStoreSecondary, times(1)).fire(1);
   }
-  
+
   @Test
   public void fireTorpedoTwice_Single_SecondaryBlank_Success(){
     // Arrange
@@ -102,7 +102,7 @@ public class GT4500Test {
     // Assert
     verify(mockTorpedoStorePrimary, times(2)).fire(1);
   }
-  
+
   @Test
   public void fireTorpedo_All_SecondaryBlank_Success(){
     // Arrange
@@ -129,5 +129,49 @@ public class GT4500Test {
     // Assert
     verify(mockTorpedoStorePrimary, times(0)).fire(1);
     verify(mockTorpedoStoreSecondary, times(0)).fire(1);
+  }
+
+  @Test
+  public void fireTorpedo_Single_DoubleShot_Success(){
+    //Arrange_1
+    when(mockTorpedoStorePrimary.fire(1)).thenReturn(true);
+    when(mockTorpedoStoreSecondary.isEmpty()).thenReturn(true);
+
+    // Act_1
+    ship.fireTorpedo(FiringMode.SINGLE);
+
+    //Arrange_2
+    when(mockTorpedoStorePrimary.isEmpty()).thenReturn(true);
+
+    // Act_2
+    ship.fireTorpedo(FiringMode.SINGLE);
+
+    // Assert
+    verify(mockTorpedoStorePrimary, times(1)).fire(1);
+    verify(mockTorpedoStoreSecondary, times(0)).fire(1);
+  }
+
+  @Test
+  public void fireTorpedo_Default_Fail(){
+    // Act
+    ship.fireTorpedo(FiringMode.DEFAULT);
+
+    // Assert
+    verify(mockTorpedoStorePrimary, times(0)).fire(1);
+    verify(mockTorpedoStoreSecondary, times(0)).fire(1);
+  }
+
+  @Test
+  public void fireTorpedo_All_PrimaryBlank_Success(){
+    //Arrange
+    when(mockTorpedoStorePrimary.isEmpty()).thenReturn(true);
+    when(mockTorpedoStoreSecondary.isEmpty()).thenReturn(false);
+
+    // Act
+    ship.fireTorpedo(FiringMode.ALL);
+
+    // Assert
+    verify(mockTorpedoStorePrimary, times(0)).fire(1);
+    verify(mockTorpedoStoreSecondary, times(1)).fire(1);
   }
 }
